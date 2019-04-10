@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.utils import timezone
 
 class User(models.Model):
     username = models.CharField(max_length=32, unique=True)
@@ -8,11 +8,21 @@ class User(models.Model):
 
 
 class Info(models.Model):
-    title = models.CharField(max_length=128, unique=True)
-    category = models.CharField(max_length=50)
-    url = models.URLField(max_length=100, unique=True)
-    imageURL = models.URLField(max_length=256, default=None, null=True)
-    create_time = models.DateTimeField(auto_now_add=True, null=True)
+    title = models.TextField()
+    categorys = models.CharField(max_length=100)
+    url = models.TextField()
+    imageURL = models.TextField()
+    create_time = models.DateField(default=timezone.now)
     like = models.IntegerField(default=0)
     comment = models.IntegerField(default=0)
+
+class Category(models.Model):
+    infoId = models.ForeignKey(Info,on_delete=models.CASCADE)
+    create_time = models.DateField(default=timezone.now)
+
+class Github(Category):pass
+
+class Java(Category):pass
+
+
 
