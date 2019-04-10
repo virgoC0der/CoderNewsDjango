@@ -19,11 +19,13 @@ from django.conf.urls import url
 
 from coder_news import views
 from coder_news import setQueueHead
+from coder_news import update
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^add/$', views.add_user),
     url(r'^find/$', views.find_topic),
     url(r'^login/$', views.login),
-    url(r'set/$', setQueueHead.set_queue_head)
+    url(r'^set/$', setQueueHead.set_queue_head),
+    url(r'^update/$', update.updateToInfo)
 ]

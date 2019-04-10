@@ -65,7 +65,6 @@ def find_topic(request):
         print(infoDataArray)
         result["data"].extend(infoDataArray)
     #组装信息
-    print(result)
     resultForJson = getAJsonRespondWithDict(result)
     #返回信息
     return resultForJson
@@ -96,10 +95,8 @@ def getInfo(category,queueHead,count):
         datas = models.python.objects.filter(id__range=(queueHead,queueHead+count-1))
     if category == "swift":
         datas = models.swift.objects.filter(id__range=(queueHead,queueHead+count-1))
-    #把子表转换为主表数据集合
+    #把子表转换为主表数据集合\
     infoData = list(datas.values('infoId__title', 'infoId__url', 'infoId__imageURL', 'infoId__category', 'infoId__like', 'infoId'))
-    # for data in datas:
-    #     infoData.append(datas.infoId.values('title', 'url', 'imageURL'))
     return infoData
 
 

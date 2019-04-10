@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_crontab',
     'coder_news'
 ]
 
@@ -60,6 +61,9 @@ PASSWORD_HASHERS = (
     'django.contrib.auth.hashers.CryptPasswordHasher'
 )
 
+CRONJOBS = [
+    ('45 16 * * *', 'coder_news.update.updateToInfo')
+]
 
 ROOT_URLCONF = 'coder_news.urls'
 

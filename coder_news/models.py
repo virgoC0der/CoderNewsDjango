@@ -9,7 +9,7 @@ class User(models.Model):
 
 class Info(models.Model):
     title = models.TextField()
-    category = models.CharField(max_length=100)
+    category  = models.CharField(max_length=100)
     url = models.TextField()
     imageURL = models.TextField()
     create_time = models.DateField(default=timezone.now)
@@ -22,6 +22,10 @@ class swift(models.Model):
 
 class python(models.Model):
     infoId = models.ForeignKey(Info,on_delete=models.CASCADE)
+    create_time = models.DateField(default=timezone.now)
+
+class Java(models.Model):
+    infoId = models.ForeignKey(Info, on_delete=models.CASCADE)
     create_time = models.DateField(default=timezone.now)
 
 
