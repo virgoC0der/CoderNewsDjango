@@ -31,7 +31,6 @@ def login(request):
 
 
 def find_topic(request):
-
     #获取数据
     categoryJSON = request.GET.get('categoryArray', '')
     amount = int(request.GET.get('infoAmount', ''))
@@ -93,8 +92,8 @@ def find_topic(request):
 def getInfo(category,queueHead,count):
     if category == "python":
         datas = models.python.objects.filter(id__range=(queueHead,queueHead+count-1))
-    if category == "swift":
-        datas = models.swift.objects.filter(id__range=(queueHead,queueHead+count-1))
+    if category == "java":
+        datas = models.Java.objects.filter(id__range=(queueHead,queueHead+count-1))
     #把子表转换为主表数据集合\
     infoData = list(datas.values('infoId__title', 'infoId__url', 'infoId__imageURL', 'infoId__category', 'infoId__like', 'infoId'))
     return infoData
