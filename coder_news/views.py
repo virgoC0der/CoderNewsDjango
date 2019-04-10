@@ -40,7 +40,7 @@ def find_topic(request):
     queueHeadArray = split_data(queueHeadArrayJSON)
 
     #对每个数据源进行分配
-    baseAmount = amount/len(categoryArray)
+    baseAmount = int(amount/len(categoryArray))
     categoryGetInfoAmountArray = []#每个数据源需要获取的量
     if baseAmount == 0 :
         #处理数据源大于数据量的情况
@@ -49,20 +49,23 @@ def find_topic(request):
         #随机添加在某一个项里
         extendAmount = amount%len(categoryArray)
         randomIndex = random.randint(0,len(categoryArray)-1)
-        for index in range(0,len(categoryArray)-1):
+        for index in range(0,len(categoryArray)):
             if randomIndex == index :
                 categoryGetInfoAmountArray.append(baseAmount+extendAmount)
             else:
                 categoryGetInfoAmountArray.append(baseAmount)
+        print(categoryGetInfoAmountArray)
     #根据队首获取信息
     result = {"data":[]}
     for index in range(0,len(categoryArray)):
         categoryName = categoryArray[index]
         categoryCount = categoryGetInfoAmountArray[index]
-        queueHead = queueHeadArray[index]
+        queueHead = int(queueHeadArray[index])
         infoDataArray = getInfo(categoryName,queueHead,categoryCount)
+        print(infoDataArray)
         result["data"].extend(infoDataArray)
     #组装信息
+    print(result)
     resultForJson = getAJsonRespondWithDict(result)
     #返回信息
     return resultForJson
@@ -89,12 +92,14 @@ def find_topic(request):
     # return JsonResponse(news, json_dumps_params={'ensure_ascii': False}, safe=False)
 
 def getInfo(category,queueHead,count):
-    if category == "Github":
-        datas = models.Github.objects.filter(id__range=(queueHead,queueHead+count))
+    if category == "python":
+        datas = models.python.objects.filter(id__range=(queueHead,queueHead+count-1))
+    if category == "swift":
+        datas = models.swift.objects.filter(id__range=(queueHead,queueHead+count-1))
     #把子表转换为主表数据集合
-    infoData = []
-    for data in datas:
-        infoData.append(data.infoId)
+    infoData = list(datas.values('infoId__title', 'infoId__url', 'infoId__imageURL', 'infoId__category', 'infoId__like', 'infoId'))
+    # for data in datas:
+    #     infoData.append(datas.infoId.values('title', 'url', 'imageURL'))
     return infoData
 
 

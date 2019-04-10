@@ -9,20 +9,20 @@ class User(models.Model):
 
 class Info(models.Model):
     title = models.TextField()
-    categorys = models.CharField(max_length=100)
+    category = models.CharField(max_length=100)
     url = models.TextField()
     imageURL = models.TextField()
     create_time = models.DateField(default=timezone.now)
     like = models.IntegerField(default=0)
     comment = models.IntegerField(default=0)
 
-class Category(models.Model):
+class swift(models.Model):
     infoId = models.ForeignKey(Info,on_delete=models.CASCADE)
     create_time = models.DateField(default=timezone.now)
 
-class Github(Category):pass
-
-class Java(Category):pass
+class python(models.Model):
+    infoId = models.ForeignKey(Info,on_delete=models.CASCADE)
+    create_time = models.DateField(default=timezone.now)
 
 
 
