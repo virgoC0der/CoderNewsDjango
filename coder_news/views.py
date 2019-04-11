@@ -43,7 +43,13 @@ def find_topic(request):
     categoryGetInfoAmountArray = []#每个数据源需要获取的量
     if baseAmount == 0 :
         #处理数据源大于数据量的情况
-        pass
+        gap = len(categoryArray) - amount
+        for i in range(0, gap):
+            randomInt = random.randint(0, len(categoryArray) - 1)
+            del(categoryArray[randomInt])
+        for index in range(0, len(categoryArray)):
+            categoryGetInfoAmountArray.append(1)
+        print(categoryGetInfoAmountArray)
     else:
         #随机添加在某一个项里
         extendAmount = amount%len(categoryArray)
@@ -58,6 +64,7 @@ def find_topic(request):
     result = {"data":[]}
     i = 1
     for index in range(0,len(categoryArray)):
+        print(index)
         categoryName = categoryArray[index]
         categoryCount = categoryGetInfoAmountArray[index]
         queueHead = int(queueHeadArray[index])
@@ -97,6 +104,8 @@ def getInfo(category,queueHead,count):
         datas = models.python.objects.filter(id__range=(queueHead,queueHead+count-1))
     if category == "java":
         datas = models.Java.objects.filter(id__range=(queueHead,queueHead+count-1))
+    if category == "swift":
+        datas = models.swift.objects.filter(id__range=(queueHead,queueHead+count-1))
     #把子表转换为主表数据集合\
     infoData = list(datas.values('infoId__title', 'infoId__url', 'infoId__imageURL', 'infoId__category', 'infoId__like', 'infoId'))
     return infoData
