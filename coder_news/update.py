@@ -17,24 +17,23 @@ head = {
     }
 
 def updateToInfo():
-    category = "java"
-    url = "https://www.v2ex.com/go/" + category
-    res = requests.get(url, headers=head)
-    soup = BeautifulSoup(res.text, "html.parser")
-    tagList = soup.findAll("span", class_="item_title")
-    # id = int(str(models.Info.objects.all()[:1].values("id"))[18:-3])
-    for tag in tagList:
-        date = now().date() + timedelta(days=0)
-        title = tag.get_text()
-        href = "https://www.v2ex.com" + tag.find('a').get("href")
-        try:
-            models.Info.objects.create(title=title, url=href, create_time=date, category=category+",v2ex")
-            pass
-        except:
-            print("Duplicate error!")
-            # id -= 1
-        id = int(str(models.Info.objects.latest("id"))[13:-1])
-        updateToChild(category, id, date)
+    categoryArray = ["java","python"]
+    for category in categoryArray:
+        url = "https://www.v2ex.com/go/" + category
+        res = requests.get(url, headers=head)
+        soup = BeautifulSoup(res.text, "html.parser")
+        tagList = soup.findAll("span", class_="item_title")
+        # id = int(str(models.Info.objects.all()[:1].values("id"))[18:-3])
+        for tag in tagList:
+            date = now().date() + timedelta(days=0)
+            title = tag.get_text()
+            href = "https://www.v2ex.com" + tag.find('a').get("href")
+            try:
+                models.Info.objects.create(title=title, url=href, create_time=date, category=category+",v2ex")
+            except:
+                print("Duplicate error!")
+            id = int(str(models.Info.objects.latest("id"))[13:-1])
+            updateToChild(category, id, date)
     print("添加成功！")
 
 

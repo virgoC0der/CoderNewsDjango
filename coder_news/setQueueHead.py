@@ -16,6 +16,6 @@ def get_info(category) -> str:
     date = now().date() + timedelta(days=-1)
     if category == "python":
         id = list(models.python.objects.filter(create_time__startswith=date).values('id'))
-    if category == "swift":
-        id = list(models.swift.objects.filter(create_time__startswith=date).values('id'))
+    if category == "java":
+        id = list(models.Java.objects.filter(create_time__startswith=date).values('id'))
     return str(id[0])
