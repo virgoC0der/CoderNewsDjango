@@ -56,13 +56,16 @@ def find_topic(request):
         print(categoryGetInfoAmountArray)
     #根据队首获取信息
     result = {"data":[]}
+    i = 1
     for index in range(0,len(categoryArray)):
         categoryName = categoryArray[index]
         categoryCount = categoryGetInfoAmountArray[index]
         queueHead = int(queueHeadArray[index])
         infoDataArray = getInfo(categoryName,queueHead,categoryCount)
-        print(infoDataArray)
+        if i > 1:
+            infoDataArray = checkRepeat(infoDataArray, result["data"], categoryName, queueHead)
         result["data"].extend(infoDataArray)
+        i += 1
     #组装信息
     resultForJson = getAJsonRespondWithDict(result)
     #返回信息
@@ -109,3 +112,18 @@ def split_data(data):
 
 def getValue(request, name):
     return request.GET.get(name)
+
+#结果查重
+def checkRepeat(infoDataArray, resultJson, category, queueHead):
+    index = 0
+    head = queueHead + len(infoDataArray)
+    while(index < len(infoDataArray)):
+        infoId = infoDataArray[index]["infoId"]
+        for result in resultJson:
+            if result["infoId"] == infoId:
+                del(infoDataArray[index])
+                index -= 1
+                infoDataArray += getInfo(category, head, 1)
+                head += 1
+        index += 1
+    return infoDataArray
