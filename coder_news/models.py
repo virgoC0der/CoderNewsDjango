@@ -9,7 +9,7 @@ class User(models.Model):
 
 class Info(models.Model):
     title = models.TextField()
-    category  = models.CharField(max_length=100)
+    category = models.CharField(max_length=100)
     url = models.TextField()
     imageURL = models.TextField()
     create_time = models.DateField(default=timezone.now)

@@ -67,27 +67,6 @@ def find_topic(request):
     #返回信息
     return resultForJson
 
-    # read = {}
-    # for info in read_info:
-    #     for num in read_num:
-    #         read[info] = int(num)
-    # print(read)
-    # # print(r)
-    # count = int(amount/len(category))
-    # news = {"list": []}
-    # i = 1
-    # for cat in category:
-    #     print(cat)
-    #     if i == len(category):
-    #         # print(i)
-    #         topic = models.Info.objects.filter(category__contains=cat)[read[cat]:amount-count*(i-1)+read[cat]].values("title", "url", "imageURL")
-    #     else:
-    #         topic = models.Info.objects.filter(category__contains=cat)[read[cat]:read[cat]+count].values("title", "url", "imageURL")
-    #     news["list"].append(list(topic))
-    #     print(topic.values("id"))
-    #     i += 1
-    # return JsonResponse(news, json_dumps_params={'ensure_ascii': False}, safe=False)
-
 def getInfo(category,queueHead,count):
     if category == "Github":
         datas = models.Github.objects.filter(id__range=(queueHead,queueHead+count))
