@@ -28,5 +28,7 @@ class Java(models.Model):
     infoId = models.ForeignKey(Info, on_delete=models.CASCADE)
     create_time = models.DateField(default=timezone.now)
 
-
+class github(models.Model):
+    infoId = models.ForeignKey(Info, on_delete=models.CASCADE)
+    create_time = models.DateField(default=timezone.now)
 
