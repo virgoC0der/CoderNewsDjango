@@ -113,5 +113,6 @@ def checkRepeat(infoDataArray, resultJson, category, queueHead):
                 index -= 1
                 infoDataArray += getInfo(category, head, 1)
                 head += 1
+                break
         index += 1
     return infoDataArray

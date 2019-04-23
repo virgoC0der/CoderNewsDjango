@@ -19,7 +19,7 @@ from django.conf.urls import url
 
 from coder_news import views
 from coder_news import setQueueHead
-from coder_news import update
+from coder_news.dataUpdate import update
 
 urlpatterns = [
     path('admin/', admin.site.urls),
