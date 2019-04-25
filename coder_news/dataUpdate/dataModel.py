@@ -7,3 +7,6 @@ class dataModel:
         self.imageUrl = imageUrl
         self.category = category
 
+    def printIt(self):
+        print(self.title,self.url,self.imageUrl,self.category)
+
