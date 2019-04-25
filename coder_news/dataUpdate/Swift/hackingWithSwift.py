@@ -15,6 +15,12 @@ def getHackeingWithSwift():
             eachUrl = "https://www.hackingwithswift.com" + div.get("href")
             imageUrl = "https://www.hackingwithswift.com" + div.find("img").get("src")
             dataArray.append(dataModel(title,eachUrl,imageUrl,"swift"))
+            model = dataModel(title, eachUrl, imageUrl, "swift")
+            model.printIt()
+            try:
+                model.updateToInfo()
+            except:
+                continue
     return dataArray
 
 if __name__ == "__main__":

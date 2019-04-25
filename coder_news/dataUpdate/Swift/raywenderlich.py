@@ -25,6 +25,12 @@ def getHackeingWithSwift():
         imageurlArray.append(image.get("src"))
     for index in range(0,10):
         dataArray.append(dataModel(titleArray[index],urlArray[index],imageurlArray[index],"swift"))
+        model = dataModel(titleArray[index],urlArray[index],imageurlArray[index],"swift")
+        model.printIt()
+        try:
+            model.updateToInfo()
+        except:
+            continue
     return dataArray
 
 if __name__ == "__main__":
