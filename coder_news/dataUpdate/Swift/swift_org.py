@@ -12,8 +12,8 @@ def getSwiftOrg():
         title = div.get_text()
         eachUrl = "https://swift.org/blog/" + div.get_text("href")
         # imageUrl = "https://www.hackingwithswift.com" + div.find("img").get("src")
-        dataArray.append(dataModel(title,eachUrl,None,"swift"))
-        model = dataModel(title,eachUrl,None,"swift")
+        dataArray.append(dataModel(title, eachUrl, None, "swift"))
+        model = dataModel(title, eachUrl, "", "swift")
         model.printIt()
         try:
             model.updateToInfo()

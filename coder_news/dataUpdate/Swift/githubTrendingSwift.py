@@ -26,7 +26,7 @@ def getGithubTrending():
             describe = project.find('p', class_="col-9 d-inline-block text-gray m-0 pr-4").get_text().rstrip().lstrip() + " " + title
         except:
             describe = title
-        model = dataModel(describe, project_url, None, "swift")
+        model = dataModel(describe, project_url, "", "swift")
         model.printIt()
         model.updateToInfo()
 

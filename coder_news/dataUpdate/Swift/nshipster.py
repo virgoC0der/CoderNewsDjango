@@ -12,7 +12,7 @@ def getNshipster():
         title = li.find("a").get_text()
         text = li.find("p").get_text()
         eachUrl = url + li.find("a").get("href")
-        model = dataModel(title, eachUrl, None, "swift")
+        model = dataModel(title, eachUrl, "", "swift")
         model.printIt()
         try:
             model.updateToInfo()
