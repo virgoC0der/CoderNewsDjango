@@ -14,5 +14,6 @@ def update():
     nshipster.getNshipster()
     raywenderlich.getHackeingWithSwift()
     swift_org.getSwiftOrg()
+    github.get_article()
     return HttpResponse("Done!")
 

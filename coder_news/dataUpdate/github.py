@@ -31,3 +31,20 @@ def github():
             model = dataModel.dataModel(describe, project_url, "", category)
             model.printIt()
             model.updateToInfo()
+
+# 获取explore页面文章
+def get_article():
+    url = "https://github.com/explore"
+    res = requests.get(url, headers=head)
+    soup = BeautifulSoup(res.text, "html.parser")
+    article_list = soup.find("div", class_="d-lg-flex gutter-lg-condensed").find_all("article")
+    for article in article_list:
+        article_url = article.find("a").get("href")
+        img_url = article.find("img").get("src")
+        title = article.find("h1").get_text()
+        model = dataModel.dataModel(title, article_url, img_url, "github")
+        model.printIt()
+        try:
+            model.updateToInfo()
+        except:
+            continue
