@@ -62,9 +62,22 @@ def find_topic(request):
         print(categoryGetInfoAmountArray)
     #根据队首获取信息
     result = {"data":[]}
+    # 检测要获取数据数目大于总数
+    for index in range(0, len(categoryArray)-1):
+        categoryCount = categoryGetInfoAmountArray[index]
+        queueHead = int(queueHeadArray[index])
+        category = categoryArray[index]
+        categoryAmount = getCategoryAmount(category)
+        temp = categoryCount
+        print(categoryCount)
+        if categoryCount + queueHead - 1 > categoryAmount:
+            categoryCount = categoryAmount - queueHead + 1
+            categoryGetInfoAmountArray[index+1] += temp - categoryCount
+            print(categoryGetInfoAmountArray[index+1])
+            if categoryCount < 0:
+                categoryCount = 0
     i = 1
     for index in range(0,len(categoryArray)):
-        print(index)
         categoryName = categoryArray[index]
         categoryCount = categoryGetInfoAmountArray[index]
         queueHead = int(queueHeadArray[index])
@@ -108,6 +121,7 @@ def checkRepeat(infoDataArray, resultJson, category, queueHead):
     while(index < len(infoDataArray)):
         infoId = infoDataArray[index]["infoId"]
         for result in resultJson:
+            # 如果重复，查找下一条数据
             if result["infoId"] == infoId:
                 del(infoDataArray[index])
                 index -= 1
@@ -116,3 +130,15 @@ def checkRepeat(infoDataArray, resultJson, category, queueHead):
                 break
         index += 1
     return infoDataArray
+
+# 获取该分类信息数目
+def getCategoryAmount(category) -> int:
+    if category == "swift":
+        amount = int(str(models.swift.objects.latest("id"))[14:-1])
+    if category == "python":
+        amount = int(str(models.python.objects.latest("id"))[15:-1])
+    if category == "java":
+        amount = int(str(models.Java.objects.latest("id"))[13:-1])
+    if category == "github":
+        amount = int(str(models.github.objects.latest("id"))[15:-1])
+    return amount
