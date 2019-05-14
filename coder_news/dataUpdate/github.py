@@ -30,7 +30,10 @@ def github():
                 describe = title
             model = dataModel.dataModel(describe, project_url, "", category)
             model.printIt()
-            model.updateToInfo()
+            try:
+                model.updateToInfo()
+            except:
+                continue
 
 # 获取explore页面文章
 def get_article():
@@ -42,7 +45,7 @@ def get_article():
         article_url = article.find("a").get("href")
         img_url = article.find("img").get("src")
         title = article.find("h1").get_text()
-        model = dataModel.dataModel(title, article_url, img_url, "github")
+        model = dataModel.dataModel(title.lstrip(), article_url.lstrip(), img_url, "github")
         model.printIt()
         try:
             model.updateToInfo()

@@ -28,7 +28,10 @@ def getGithubTrending():
             describe = title
         model = dataModel(describe, project_url, "", "swift")
         model.printIt()
-        model.updateToInfo()
+        try:
+            model.updateToInfo()
+        except:
+            continue
 
 if __name__ == "__main__":
     array = getGithubTrending()

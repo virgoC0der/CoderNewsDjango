@@ -25,7 +25,7 @@ def getAppcoda():
         title = div.find("h2").get_text()
         eachUrl = div.find("h2").find("a").get("href")
         dataArray.append(dataModel(title, eachUrl, imageArr[i], "swift"))
-        model = dataModel(title, eachUrl, imageArr[i], "swift")
+        model = dataModel(title, eachUrl, imageArr[i][2:-2], "swift")
         model.printIt()
         i += 1
         try:
