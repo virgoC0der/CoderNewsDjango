@@ -3,7 +3,6 @@ from bs4 import BeautifulSoup
 from coder_news.dataUpdate.dataModel import *
 
 
-
 def getHackeingWithSwift():
     dataArray = []
     websiteUrl = "https://www.raywenderlich.com"

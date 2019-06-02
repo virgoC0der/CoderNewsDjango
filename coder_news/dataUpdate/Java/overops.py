@@ -7,7 +7,7 @@ head = {
             'Accept-Encoding': 'gzip, deflate, br',
             'Accept-Language': 'zh-CN,zh;q=0.9',
             'Connection': 'keep-alive',
-            'Referer': 'https://github.com/FinchFeng/Coder-News-PaperWork',
+            'Referer': 'https://blog.overops.com/',
             'Upgrade-Insecure-Requests': '1',
             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.92 Safari/537.36',
         }
@@ -23,4 +23,7 @@ def get_overops():
         img_url = article.find("div", class_="col-md-5 col-sm-5 post-featured-image").find("a").get("href")
         print(title, article_url, img_url)
         model = dataModel(title, article_url, img_url, "java")
-        model.updateToInfo()
+        try:
+            model.updateToInfo()
+        except:
+            continue
