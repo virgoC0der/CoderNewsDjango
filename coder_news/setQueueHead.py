@@ -16,14 +16,35 @@ def set_queue_head(request):
 
 # 获取前一天日期的id起点
 def get_info(category) -> int:
-    date = now().date() + timedelta(days=-5)
-    if category == "python":
-        id = list(models.python.objects.filter(create_time__startswith=date).values('id'))
-    if category == "java":
-        id = list(models.Java.objects.filter(create_time__startswith=date).values('id'))
-    if category == "swift":
-        id = list(models.swift.objects.filter(create_time__startswith=date).values('id'))
-    if category == "github":
-        id = list(models.github.objects.filter(create_time__startswith=date).values('id'))
-    print(id)
-    return int(str(id[0])[7:-1])
+    i = -5
+    date = now().date() + timedelta(days=i)
+    print(date)
+    id = None
+    while id == None:
+        if category == "python":
+            try:
+                id = models.python.objects.filter(create_time__startswith=date).first().id
+            except:
+                i -= 1
+                date = now().date() + timedelta(days=i)
+        if category == "java":
+            try:
+                id = models.Java.objects.filter(create_time__startswith=date).first().id
+            except:
+                i -= 1
+                date = now().date() + timedelta(days=i)
+        if category == "swift":
+            try:
+                id = models.swift.objects.filter(create_time__startswith=date).first().id
+            except:
+                i -= 1
+                date = now().date() + timedelta(days=i)
+        if category == "github":
+            try:
+                id = models.github.objects.filter(create_time__startswith=date).first().id
+            except:
+                i -= 1
+                date = now().date() + timedelta(days=i)
+        if id != None:
+            break
+    return id
