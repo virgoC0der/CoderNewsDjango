@@ -91,6 +91,20 @@ def find_topic(request):
     # 返回信息
     return resultForJson
 
+# 通过id查找
+def find_by_id(request):
+    url_list = request.GET.get('urlList', '')
+    url_list = split_data(url_list)
+    print(url_list)
+    result = {"data": []}
+
+    for index in url_list:
+        print(index)
+        infoDataArray = list(models.Info.objects.filter(url=index).values('title', 'url', 'imageURL', 'category', 'like', 'id'))
+        result["data"].extend(infoDataArray)
+    # 组装信息
+    resultForJson = getAJsonRespondWithDict(result)
+    return resultForJson
 
 def getInfo(category, queueHead, count):
     if category == "python":

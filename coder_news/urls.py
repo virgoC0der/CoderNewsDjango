@@ -27,5 +27,6 @@ urlpatterns = [
     url(r'^find/$', views.find_topic),
     url(r'^login/$', views.login),
     url(r'^set/$', setQueueHead.set_queue_head),
-    url(r'^update/$', update.updateToInfo)
+    url(r'^update/$', update.update),
+    url(r'^findByUrl/$',views.find_by_id)
 ]
