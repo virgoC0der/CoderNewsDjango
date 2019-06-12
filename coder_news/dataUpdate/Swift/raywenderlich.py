@@ -10,7 +10,6 @@ def getHackeingWithSwift():
     result = requests.get(url)
     soup = BeautifulSoup(result.text,"html.parser")
     title_set = soup.find_all("span",class_="c-tutorial-item__title")
-    print(soup.prettify())
     titleArray = []
     urlArray = []
     imageurlArray = []

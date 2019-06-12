@@ -45,7 +45,7 @@ def get_article():
         article_url = article.find("a").get("href")
         img_url = article.find("img").get("src")
         title = article.find("h1").get_text()
-        model = dataModel.dataModel(title.lstrip(), article_url.lstrip(), img_url, "github")
+        model = dataModel.dataModel(title.lstrip().rstrip(), article_url.lstrip(), img_url, "github")
         model.printIt()
         try:
             model.updateToInfo()

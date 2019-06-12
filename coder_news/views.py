@@ -92,7 +92,7 @@ def find_topic(request):
     return resultForJson
 
 # 通过id查找
-def find_by_id(request):
+def find_by_url(request):
     url_list = request.GET.get('urlList', '')
     url_list = split_data(url_list)
     print(url_list)

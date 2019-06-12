@@ -29,4 +29,8 @@ class dataModel:
             models.swift.objects.create(create_time=self.date, infoId_id=self.id)
         if self.category == "github":
             models.github.objects.create(create_time=self.date, infoId_id=self.id)
+        if self.category == "Technology":
+            models.techonology.objects.create(create_time=self.date, infoId_id=self.id)
+        if self.category == "NetworkSecurity":
+            models.networkSecurity.objects.create(create_time=self.date, infoId_id=self.id)
 

@@ -32,3 +32,11 @@ class github(models.Model):
     infoId = models.ForeignKey(Info, on_delete=models.CASCADE)
     create_time = models.DateField(default=timezone.now)
 
+class techonology(models.Model):
+    infoId = models.ForeignKey(Info, on_delete=models.CASCADE)
+    create_time = models.DateField(default=timezone.now)
+
+class networkSecurity(models.Model):
+    infoId = models.ForeignKey(Info, on_delete=models.CASCADE)
+    create_time = models.DateField(default=timezone.now)
+
