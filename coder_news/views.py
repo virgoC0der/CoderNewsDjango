@@ -91,13 +91,12 @@ def find_topic(request):
     # 返回信息
     return resultForJson
 
-# 通过id查找
+# 通过url查找
 def find_by_url(request):
     url_list = request.GET.get('urlList', '')
     url_list = split_data(url_list)
     print(url_list)
     result = {"data": []}
-
     for index in url_list:
         print(index)
         infoDataArray = list(models.Info.objects.filter(url=index).values('title', 'url', 'imageURL', 'category', 'like', 'id'))
@@ -107,12 +106,17 @@ def find_by_url(request):
     return resultForJson
 
 def getInfo(category, queueHead, count):
+    datas = None
     if category == "python":
         datas = models.python.objects.filter(id__range=(queueHead, queueHead + count - 1))
     if category == "java":
         datas = models.Java.objects.filter(id__range=(queueHead, queueHead + count - 1))
     if category == "swift":
         datas = models.swift.objects.filter(id__range=(queueHead, queueHead + count - 1))
+    if category == "computer" or category=="Technology" or category == "phone":
+        datas = models.techonology.objects.filter(id__range=(queueHead, queueHead + count - 1))
+    if category == "NetworkSecurity" or category == "networkSecurity":
+        datas = models.networkSecurity.objects.filter(id__range=(queueHead, queueHead + count - 1))
     # 把子表转换为主表数据集合\
     infoData = list(
         datas.values('infoId__title', 'infoId__url', 'infoId__imageURL', 'infoId__category', 'infoId__like', 'infoId'))
@@ -127,7 +131,6 @@ def split_data(data):
 
 
 # 辅助方法
-
 def getValue(request, name):
     return request.GET.get(name)
 
@@ -152,6 +155,7 @@ def checkRepeat(infoDataArray, resultJson, category, queueHead):
 
 # 获取该分类信息数目
 def getCategoryAmount(category) -> int:
+    amount = None
     if category == "swift":
         amount = int(str(models.swift.objects.latest("id"))[14:-1])
     if category == "python":
@@ -160,4 +164,8 @@ def getCategoryAmount(category) -> int:
         amount = int(str(models.Java.objects.latest("id"))[13:-1])
     if category == "github":
         amount = int(str(models.github.objects.latest("id"))[15:-1])
+    if category == "Technology" or category == "computer" or category == "phone":
+        amount = int(str(models.techonology.objects.latest("id"))[20:-1])
+    if category == "NetworkSecurity" or category == "networkSecurity":
+        amount = int(str(models.networkSecurity.objects.latest("id"))[24:-1])
     return amount
