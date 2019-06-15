@@ -8,7 +8,7 @@ class User(models.Model):
 
 
 class Info(models.Model):
-    title = models.TextField()
+    title = models.TextField(max_length=500, unique=True)
     category = models.CharField(max_length=100)
     url = models.TextField()
     imageURL = models.TextField()
