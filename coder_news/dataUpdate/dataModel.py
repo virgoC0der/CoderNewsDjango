@@ -33,4 +33,14 @@ class dataModel:
             models.techonology.objects.create(create_time=self.date, infoId_id=self.id)
         if self.category == "NetworkSecurity":
             models.networkSecurity.objects.create(create_time=self.date, infoId_id=self.id)
+        if self.category == "Phone":
+            models.phone.objects.create(create_time=self.date, infoId_id=self.id)
+        if self.category == "Computer":
+            models.computer.objects.create(create_time=self.date, infoId_id=self.id)
+        if self.category == "TechnologyArticles":
+            models.articles.objects.create(create_time=self.date, infoId_id=self.id)
+        if self.category == "AppSolution":
+            models.appsolution.objects.create(create_time=self.date, infoId_id=self.id)
+        if self.category == "ResourceRecommend":
+            models.recommand.objects.create(create_time=self.date, infoId_id=self.id)
 

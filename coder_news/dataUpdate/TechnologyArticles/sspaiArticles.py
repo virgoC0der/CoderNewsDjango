@@ -11,7 +11,7 @@ def getSspai():
         title = llist[i]['title']
         eachUrl = "https://sspai.com/post/" + str(llist[i]['id'])
         imageUrl = "https://cdn.sspai.com/" + llist[i]['banner']
-        model = dataModel(title, eachUrl, imageUrl, 'Technology')
+        model = dataModel(title, eachUrl, imageUrl, 'TechnologyArticles')
         try:
             model.updateToInfo()
             model.printIt()

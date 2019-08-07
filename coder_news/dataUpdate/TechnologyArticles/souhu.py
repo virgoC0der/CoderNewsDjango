@@ -21,11 +21,11 @@ def getSouhu():
             noImg = None
             imageUrlArray.append(noImg)
         else:
-            otherImg = "https://" + img.find("img").get("src")
+            otherImg = "https:" + img.find("img").get("src")
             imageUrlArray.append(otherImg)
         title = img.find("h4").find("a").get_text().strip()
         eachUrl = "https:"+img.find("h4").find("a").get("href")
-        model = dataModel(title, eachUrl, imageUrlArray[i], 'Technology')
+        model = dataModel(title, eachUrl, imageUrlArray[i], 'Phone')
         try:
             model.updateToInfo()
             model.printIt()

@@ -12,8 +12,8 @@ def getPconline():
     for div in div_set:
         title = div.find("img").get("alt")
         eachUrl = div.get("href")
-        imageUrl = "https://" + div.find("img").get("src")
-        model = dataModel(title, eachUrl, imageUrl, 'Technology')
+        imageUrl = "https:" + div.find("img").get("#src")
+        model = dataModel(title, eachUrl, imageUrl, 'Phone')
         try:
             model.updateToInfo()
             model.printIt()

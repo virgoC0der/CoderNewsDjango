@@ -40,3 +40,22 @@ class networkSecurity(models.Model):
     infoId = models.ForeignKey(Info, on_delete=models.CASCADE)
     create_time = models.DateField(default=timezone.now)
 
+class phone(models.Model):
+    infoId = models.ForeignKey(Info, on_delete=models.CASCADE)
+    create_time = models.DateField(default=timezone.now)
+
+class computer(models.Model):
+    infoId = models.ForeignKey(Info, on_delete=models.CASCADE)
+    create_time = models.DateField(default=timezone.now)
+
+class appsolution(models.Model):
+    infoId = models.ForeignKey(Info, on_delete=models.CASCADE)
+    create_time = models.DateField(default=timezone.now)
+
+class articles(models.Model):
+    infoId = models.ForeignKey(Info, on_delete=models.CASCADE)
+    create_time = models.DateField(default=timezone.now)
+
+class recommand(models.Model):
+    infoId = models.ForeignKey(Info, on_delete=models.CASCADE)
+    create_time = models.DateField(default=timezone.now)

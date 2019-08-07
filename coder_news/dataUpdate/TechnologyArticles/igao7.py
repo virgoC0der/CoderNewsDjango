@@ -16,7 +16,7 @@ def getIgao7():
     for div in div_set:
         title = div.find("span",class_="hd").get_text()
         eachUrl = div.parent.get("href")
-        model = dataModel(title, eachUrl, imageurlArray[i], 'Technology')
+        model = dataModel(title, eachUrl, imageurlArray[i], 'Phone')
         try:
             model.updateToInfo()
             model.printIt()

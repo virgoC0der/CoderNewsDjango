@@ -23,10 +23,10 @@ def getAppso():
     for div in div_set:
         title = div.find("h3").find("a").get_text()
         eachUrl = div.find("h3").find("a").get("href")
-        model = dataModel(title, eachUrl, imageArray[i][2:-2], 'Technology')
+        model = dataModel(title, eachUrl, imageArray[i][2:-2], 'AppSolution')
         try:
             model.updateToInfo()
             model.printIt()
         except:
             continue
-        i+=i
+        i+=1

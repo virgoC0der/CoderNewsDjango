@@ -117,6 +117,16 @@ def getInfo(category, queueHead, count):
         datas = models.techonology.objects.filter(id__range=(queueHead, queueHead + count - 1))
     if category == "NetworkSecurity" or category == "networkSecurity":
         datas = models.networkSecurity.objects.filter(id__range=(queueHead, queueHead + count - 1))
+    if category == "phone" or category == "Phone":
+        datas = models.phone.objects.filter(id__range=(queueHead, queueHead + count - 1))
+    if category == "computer" or category == "Computer":
+        datas = models.computer.objects.filter(id__range=(queueHead, queueHead + count - 1))
+    if category == "TechnologyArticles":
+        datas = models.articles.objects.filter(id__range=(queueHead, queueHead + count - 1))
+    if category == "ResourceRecommend":
+        datas = models.recommand.objects.filter(id__range=(queueHead, queueHead + count - 1))
+    if category == "AppSolution":
+        datas = models.appsolution.objects.filter(id__range=(queueHead, queueHead + count - 1))
     # 把子表转换为主表数据集合\
     infoData = list(
         datas.values('infoId__title', 'infoId__url', 'infoId__imageURL', 'infoId__category', 'infoId__like', 'infoId'))
@@ -168,4 +178,14 @@ def getCategoryAmount(category) -> int:
         amount = int(str(models.techonology.objects.latest("id"))[20:-1])
     if category == "NetworkSecurity" or category == "networkSecurity":
         amount = int(str(models.networkSecurity.objects.latest("id"))[24:-1])
+    if category == "Phone" or category == "phone":
+        amount = int(str(models.phone.objects.latest("id"))[14:-1])
+    if category == "Computer" or category == "computer":
+        amount = int(str(models.computer.objects.latest("id"))[17:-1])
+    if category == "TechnologyArticles":
+        amount = int(str(models.articles.objects.latest("id"))[17:-1])
+    if category == "AppSolution":
+        amount = int(str(models.appsolution.objects.latest("id"))[20:-1])
+    if category == "ResourceRecommend":
+        amount = int(str(models.recommand.objects.latest("id"))[18:-1])
     return amount

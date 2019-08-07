@@ -17,7 +17,7 @@ def getPcbeta():
             title = div.find("img").get("title")
             eachUrl = div.get("href")
             imageUrl = div.find("img").get("src")
-            model = dataModel(title, eachUrl, imageUrl, 'Technology')
+            model = dataModel(title, eachUrl, imageUrl, 'Computer')
             try:
                 model.updateToInfo()
                 model.printIt()
